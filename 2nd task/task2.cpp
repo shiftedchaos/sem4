@@ -20,7 +20,8 @@ auto measureSortingTime(T container)
     sort(container.begin(), container.end());
     //TODO: вычислить время сортировки и вернуть
     auto stop = high_resolution_clock::now();
-    return stop - start;
+    duration<double> diff = stop - start;
+    return diff.count();
 }
 
 // специализация шаблона для list
@@ -32,7 +33,8 @@ auto measureSortingTime(list<int> container)
     container.sort();
     //TODO: вычислить время сортивки и вернуть
     auto stop = high_resolution_clock::now();
-    return stop - start;
+    duration<double> diff = stop - start;
+    return diff.count();
 }
 
 
