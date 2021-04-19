@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cmath>
 
+static inline double computeSquare (double x) { return x*x; }
+
 bool eratosthenesSieve(int currentNumber)
 {
     /*
@@ -80,6 +82,15 @@ int main()
   std::vector<int>::iterator pos;
   pos = find_if(coll.begin(), coll.end(), eratosthenesSieve);
   std::cout << "Just one prime number from coll: " << std::distance(coll.begin(), pos) + 1 << std::endl;
+
+  transform(coll.begin(), coll.end(), coll.begin(), computeSquare);
+
+  std::cout << std::endl;
+  for (auto elem: coll)
+  {
+    std::cout << elem << ' ';
+  }
+  std::cout << std::endl;
 
 
 
