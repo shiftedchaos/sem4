@@ -4,7 +4,6 @@
 
 int main()
 {
-  std::cout << "Hi";
   int amount;
 
   std::vector<int> coll = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -24,5 +23,12 @@ int main()
   {
     std::cout << elem << ' ';
   }
+  std::cout << std::endl;
 
+  coll.erase( unique( coll.begin(), coll.end() ), coll.end() );
+
+  for (auto elem: coll)
+  {
+    std::cout << elem << ' ';
+  }
 }
