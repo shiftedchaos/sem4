@@ -92,6 +92,14 @@ int main()
   }
   std::cout << std::endl;
 
+  //Task 3
+  int size;
+  size = coll.size();
+  std::cout << "SIZE: " << size << std::endl;
+
+  std::vector<int> coll2;
+  generate_n (coll2.begin(), coll2.end(), rand);
+  
 
 
 }
