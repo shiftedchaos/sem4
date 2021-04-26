@@ -2,8 +2,11 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <numeric>
 
 static inline double computeSquare (double x) { return x*x; }
+
+bool isNegative (int i) {return i < 0;}
 
 bool eratosthenesSieve(int currentNumber)
 {
@@ -97,9 +100,55 @@ int main()
   size = coll.size();
   std::cout << "SIZE: " << size << std::endl;
 
-  std::vector<int> coll2;
-  generate_n (coll2.begin(), coll2.end(), rand);
-  
+  std::vector<int> coll2(size);
+
+  for( int i = 0; i < size; i++ ) {
+      coll2[i] = rand() % size;
+    }
+  for( int i = 0; i < size; i++ ) {
+      std::cout << coll2[i] << " ";
+    }
+
+  std::cout << std::endl;
+
+  int sum_of_elems = 0;
+  std::cout << "Sum of elem" << accumulate(coll2.begin(), coll2.end(), 0) <<
+  '\n';
+
+  for (size_t i = 0; i < 5; i++)
+  {
+    coll2[i] = 1;
+  }
+
+  std::vector<int> coll3(size);
+
+  for (size_t i = 0; i < coll3.size(); i++)
+  {
+    coll3[i] = coll2[i] - coll[i];
+  }
+/*
+  for(auto x: coll3)
+  {
+    std::cout << x << ' ';
+  }
+*/
+
+replace_if(coll3.begin(), coll3.end(), isNegative, 0);
+
+for(auto x: coll3)
+{
+  std::cout << x << ' ';
+}
+
+auto newEnd = remove(coll3.begin(), coll3.end(), 0);
+coll3.erase(newEnd, coll3.end());
+
+std::cout << "remove all zero's" << std::endl;
+
+for(auto x: coll3)
+{
+  std::cout << x << ' ';
+}
 
 
 }
