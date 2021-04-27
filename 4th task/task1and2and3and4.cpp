@@ -123,7 +123,7 @@ int main()
   std::vector<int> coll3(size);
 
   for (size_t i = 0; i < coll3.size(); i++)
-  {
+  {                                                //use transform here
     coll3[i] = coll2[i] - coll[i];
   }
 /*
