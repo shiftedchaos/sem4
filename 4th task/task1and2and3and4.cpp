@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric>
+#include <random>
 
 static inline double computeSquare (double x) { return x*x; }
 
@@ -102,9 +103,13 @@ int main()
 
   std::vector<int> coll2(size);
 
-  for( int i = 0; i < size; i++ ) {
-      coll2[i] = rand() % size;
-    }
+  std::default_random_engine gen;
+
+  std::uniform_int_distribution<int> dist(-200, 200);
+  for (int i = 0; i < size; i++)
+  {
+        coll2.push_back(dist(gen));
+  }
   for( int i = 0; i < size; i++ ) {
       std::cout << coll2[i] << " ";
     }
@@ -122,6 +127,8 @@ int main()
 
   std::vector<int> coll3(size);
 
+  //std::transform(coll.begin(), coll.end(), coll2.begin(), coll2.end())
+
   for (size_t i = 0; i < coll3.size(); i++)
   {                                                //use transform here
     coll3[i] = coll2[i] - coll[i];
@@ -135,20 +142,15 @@ int main()
 
 replace_if(coll3.begin(), coll3.end(), isNegative, 0);
 
-for(auto x: coll3)
-{
-  std::cout << x << ' ';
-}
 
-auto newEnd = remove(coll3.begin(), coll3.end(), 0);
-coll3.erase(newEnd, coll3.end());
+std::vector<int>::iterator index = remove(coll3.begin(), coll3.end(), int(0));
+coll3.erase(coll3.begin() + distance(coll3.begin(), index), coll3.end());
+reverse (coll3.begin(),coll3.end());
 
-std::cout << "remove all zero's" << std::endl;
+std::cout << "p3: ";
+for (auto const &element: coll3)
+        std::cout << element << ' ';
 
-for(auto x: coll3)
-{
-  std::cout << x << ' ';
-}
 
 
 }
