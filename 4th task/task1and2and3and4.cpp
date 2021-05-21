@@ -127,8 +127,9 @@ int main()
 
   std::vector<int> coll3(size);
 
-  //std::transform(coll.begin(), coll.end(), coll2.begin(), coll2.end())
+  std::transform(coll.begin(), coll.end(), coll2.begin(), coll2.end())
 
+/*
   for (size_t i = 0; i < coll3.size(); i++)
   {                                                //use transform here
     coll3[i] = coll2[i] - coll[i];
@@ -140,17 +141,21 @@ int main()
   }
 */
 
-replace_if(coll3.begin(), coll3.end(), isNegative, 0);
+  replace_if(coll3.begin(), coll3.end(), isNegative, 0);
 
 
-std::vector<int>::iterator index = remove(coll3.begin(), coll3.end(), int(0));
-coll3.erase(coll3.begin() + distance(coll3.begin(), index), coll3.end());
-reverse (coll3.begin(),coll3.end());
+  std::vector<int>::iterator index = remove(coll3.begin(), coll3.end(), int(0));
+  coll3.erase(coll3.begin() + distance(coll3.begin(), index), coll3.end());
+  reverse (coll3.begin(),coll3.end());
 
-std::cout << "p3: ";
-for (auto const &element: coll3)
+  std::cout << "Coll3: ";
+  for (auto const &element: coll3)
         std::cout << element << ' ';
 
+  cout << endl << "Top 3:  ";
+  nth_element(coll3.begin(),coll3.end()-3, coll3.end());
+  copy(coll3.end()-3, coll3.end(), ostream_iterator<int>(cout," "));
 
 
+  return 0;
 }
